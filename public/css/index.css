@@ -1,0 +1,37 @@
+#carousel {
+    height: 80vh;
+    width: 100vw;
+    background-color: white;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.container-title {
+    padding: 20px;
+    font-size: 15px;
+}
+
+#popular {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.popular-card {
+    padding: 12px;
+}
+
+.card-img {
+    width: 130px;
+    height: 180px;
+    border-radius: 10px;
+    background-color: blue;
+    /* tinggal diganti background-img */
+}
+
+.title {
+    margin: 10px 0;
+}
