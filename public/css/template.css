@@ -31,14 +31,31 @@ nav {
 
 .menu a {
     color: white;
+    text-decoration: none;
 }
 
-a {
-    text-decoration: none;
+.menu a:hover {
+    color: red;
+}
+
+.content {
+    padding: 13%;
+    background-color: black;
+    color: white;
+}
+
+.content h1 {
+    text-align: center;
+}
+
+#logo-h1 {
+    margin-left: -7px;
+    margin-bottom: 7px;
 }
 
 footer {
     display: flex;
+    color: white;
     flex-direction: column;
     align-items: center;
     background-color: rgb(26, 26, 26);

@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/template.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     @yield('css')
     <title>@yield('title')</title>
 </head>
@@ -15,14 +16,16 @@
     <nav>
         <img id="logo-navbar" src="{{ asset('assets/logo.png') }}" alt="">
         <div class="menu">
-            <a href="#">Home</a>
+            <a href="/index">Home</a>
             <a href="#">Movies</a>
             <a href="#">Actors</a>
-            <a href="#">Register</a>
-            <a href="#">Login</a>
+            <a href="/registerPage">Register</a>
+            <a href="/loginPage">Login</a>
         </div>
     </nav>
-    @yield('content')
+    <div class="content">
+        @yield('content')
+    </div>
     <footer>
         <img id="logo-footer" src="{{ asset('assets/logo.png') }}" alt="">
         <p>MovieList is a website that contains list of movies</p>
