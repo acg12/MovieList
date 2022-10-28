@@ -16,11 +16,25 @@
     <nav>
         <img id="logo-navbar" src="{{ asset('assets/logo.png') }}" alt="">
         <div class="menu">
-            <a href="/index">Home</a>
+            <a href="/">Home</a>
             <a href="#">Movies</a>
             <a href="#">Actors</a>
+            @auth
+            <a href="#">My Wishlist</a>
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Profile
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><button class="dropdown-item" type="button">Action</button></li>
+                    <li><button class="dropdown-item" type="button">Another action</button></li>
+                    <li><button class="dropdown-item" type="button">Something else here</button></li>
+                </ul>
+            </div>
+            @else
             <a href="/registerPage">Register</a>
             <a href="/loginPage">Login</a>
+            @endif
         </div>
     </nav>
     <div class="content">
