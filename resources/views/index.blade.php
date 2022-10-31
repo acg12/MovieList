@@ -8,4 +8,9 @@
 
 @section('content')
 
+@auth
+    {{Auth::user()->name}}
+    {{Auth::user()->role}}
+@endif
+
 @endsection

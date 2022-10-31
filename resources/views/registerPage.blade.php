@@ -9,7 +9,7 @@
 @section('content')
 <h1>Hello, Welcome to<img id="logo-h1" src="{{ asset('assets/logo.png') }}" alt=""></h1>
 @if ($errors->any())
-<h1>{{$errors->first()}}</h1>
+    <h4>{{$errors->first()}}</h4>
 @endif
 
 <form action="/registerPage" method="POST">

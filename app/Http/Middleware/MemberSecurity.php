@@ -17,10 +17,9 @@ class MemberSecurity
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::check() || Auth::user()->role != 'member') {
-            return abort(401);
+        if (Auth::check() && Auth::user()->role == 'member') {
+            return $next($request);
         }
-        
-        return $next($request);
+        return abort(401);
     }
 }

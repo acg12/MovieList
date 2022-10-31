@@ -17,10 +17,9 @@ class AdminSecurity
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!Auth::check() || !Auth::user()->role != 'admin') {
-            return abort(401);
+        if (Auth::check() && Auth::user()->role == 'admin') {
+            return $next($request);
         }
-
-        return $next($request);
+        return abort(401);
     }
 }

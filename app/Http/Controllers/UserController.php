@@ -40,7 +40,7 @@ class UserController extends Controller
             $user->password = $req->password;
 
             $user->save();
-            return redirect()->route('/');
+            return redirect()->route('index');
         }
     }
 
@@ -55,14 +55,14 @@ class UserController extends Controller
         }
 
         if(Auth::attempt($credentials, true)) {
-            return redirect()->route('/');
+            return redirect()->route('index');
         } else {
             return back()->withErrors(['Incorrect email or password']);
         }
     }
-    
+
     public function logout () {
         Auth::logout();
-        return redirect('/login');
+        return redirect()->route('index');
     }
 }

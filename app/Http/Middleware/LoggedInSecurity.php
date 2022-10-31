@@ -20,7 +20,6 @@ class LoggedInSecurity
         if (!Auth::check()) {
             return abort(401);
         }
-        
         return $next($request);
     }
 }
