@@ -37,10 +37,10 @@ class UserController extends Controller
             $user = new User();
             $user->name = $req->name;
             $user->email = $req->email;
-            $user->password = $req->password;
+            $user->password = bcrypt($req->password);
 
             $user->save();
-            return redirect()->route('index');
+            return redirect('/');
         }
     }
 
@@ -55,7 +55,7 @@ class UserController extends Controller
         }
 
         if(Auth::attempt($credentials, true)) {
-            return redirect()->route('index');
+            return redirect('/');
         } else {
             return back()->withErrors(['Incorrect email or password']);
         }
@@ -63,6 +63,6 @@ class UserController extends Controller
 
     public function logout () {
         Auth::logout();
-        return redirect()->route('index');
+        return redirect('/');
     }
 }
