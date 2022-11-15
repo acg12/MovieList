@@ -1,0 +1,5 @@
+.form-control, .form-select {
+    color: white;
+    background-color: rgb(26, 26, 26);
+    border: None;
+}

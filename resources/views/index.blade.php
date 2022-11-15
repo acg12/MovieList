@@ -8,9 +8,8 @@
 
 @section('content')
 
-@auth
-    {{Auth::user()->name}}
-    {{Auth::user()->role}}
+@if(Auth::check() && Auth::user()->role == 'admin')
+<button type="button" class="btn btn-warning"><a href="/add/movie">Add Movie</a></button>
 @endif
 
 @endsection
