@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MovieController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -35,7 +36,6 @@ Route::group(['middleware' => 'memberinsecurity'], function () {
 
 Route::group(['middleware' => 'adminsecurity'], function () {
     // Route::get('/logout', [UserController::class, 'logout']);
-    Route::get('/add/movie', function() {
-        return view('createMovie');
-    });
+    Route::get('/movies/add', [MovieController::class, 'createMovie']);
+    Route::post('/movies/add', [MovieController::class, 'insertMovie']);
 });

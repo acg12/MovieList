@@ -29,7 +29,7 @@ nav {
     justify-content: space-evenly;
 }
 
-.menu a {
+.menu a, button > a {
     color: white;
     text-decoration: none;
 }

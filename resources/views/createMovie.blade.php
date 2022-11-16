@@ -7,8 +7,11 @@
 @endsection
 
 @section('content')
+@if ($errors->any())
+<h4>{{$errors->first()}}</h4>
+@endif
 <div class="fs-3 text fw-bolder">Add Movie</div>
-<form action="/add/movie" method="post" enctype="multipart/form-data" class="row g-3">
+<form action="/movies/add" method="post" enctype="multipart/form-data" class="row g-3">
     @csrf
     <div class="col-12">
         <label for="title" class="form-label">Title</label>
@@ -19,8 +22,22 @@
         <textarea class="form-control" name="description" rows="3"></textarea>
     </div>
     <div class="col-12">
-        <label for="genre" class="form-label">Genre</label>
-        <input type="text" name="genre" class="form-control">
+        <label for="genre[]" class="form-label">Genre</label>
+        <select name="genre[]" class="form-select" multiple>
+            @foreach($genres as $g)
+                <option value="{{ $g->genre }}">{{ $g->genre }}</option>
+            @endforeach
+        </select>
+        <!-- @foreach($genres as $g)
+        <div class=" form-check">
+                <input class="form-check-input" type="checkbox" name="genre" value="{{ $g->genre }}" id="flexCheckChecked">
+                <label class="form-check-label" for="flexCheckChecked">
+                    {{ $g->genre }}
+                </label>
+    </div>
+    @endforeach -->
+    <!-- https://stackoverflow.com/questions/41966620/laravel-get-values-of-checkboxes
+        $genre = $req->input('genre'); -->
     </div>
     <div class="col-12">
         <label for="#">Actors</label>
@@ -29,19 +46,9 @@
         <div class="col-md-6">
             <label for="actors[]" class="form-label">Actor</label>
             <select name="actors[]" class="form-select">
-                <option selected>-- Open this select menu --</option>
-                <option>...</option>
-            </select>
-        </div>
-        <div class="col-md-6">
-            <label for="characters[]" class="form-label">Character Name</label>
-            <input type="text" class="form-control" name="characters[]">
-        </div>
-        <div class="col-md-6">
-            <label for="actors[]" class="form-label">Actor</label>
-            <select name="actors[]" class="form-select">
-                <option selected>-- Open this select menu --</option>
-                <option>...</option>
+                @foreach($actors as $a)
+                    <option value="{{ $a->name }}">{{ $a->name }}</option>
+                @endforeach
             </select>
         </div>
         <div class="col-md-6">
@@ -62,25 +69,18 @@
     </div>
     <div class="mb-3">
         <label for="imgUrl" class="form-label">Image Url</label>
-        <input class="form-control" type="file" id="imgUrl">
+        <input class="form-control" type="file" name="imgUrl">
     </div>
     <div class="mb-3">
         <label for="backgroundUrl" class="form-label">Background Url</label>
-        <input class="form-control" type="file" id="backgroundUrl">
+        <input class="form-control" type="file" name="backgroundUrl">
     </div>
     <div class="d-grid gap-2">
-        <button class="btn btn-danger" type="button">Create</button>
+        <button class="btn btn-danger" type="submit">Create</button>
     </div>
 </form>
 @endsection
 
 @section('scripts')
-<script type="text/javascript">
-    document.getElementById('btn-add-actor').addEventListener('click', function() {
-        document.getElementById('actor-fields').innerHTML += '<div class="col-md-6"><label for="actors[]" class="form-label">Actor</label><select name="actors[]" class="form-select"> \
-                <option selected>-- Open this select menu --</option>option>...</option></select></div> \
-                <div class="col-md-6"><label for="characters[]" class="form-label">Character Name</label> \
-                <input type="text" class="form-control" name="characters[]"></div>'
-    })
-</script>
+<script src="{{ asset('js/createMovie.js') }}"></script>
 @endsection
