@@ -8,7 +8,7 @@
 
 @section('content')
 @if ($errors->any())
-<h4>{{$errors->first()}}</h4>
+    <h4>{{$errors->first()}}</h4>
 @endif
 <div class="fs-3 text fw-bolder">Add Movie</div>
 <form action="/movies/add" method="post" enctype="multipart/form-data" class="row g-3">
@@ -28,16 +28,6 @@
                 <option value="{{ $g->genre }}">{{ $g->genre }}</option>
             @endforeach
         </select>
-        <!-- @foreach($genres as $g)
-        <div class=" form-check">
-                <input class="form-check-input" type="checkbox" name="genre" value="{{ $g->genre }}" id="flexCheckChecked">
-                <label class="form-check-label" for="flexCheckChecked">
-                    {{ $g->genre }}
-                </label>
-    </div>
-    @endforeach -->
-    <!-- https://stackoverflow.com/questions/41966620/laravel-get-values-of-checkboxes
-        $genre = $req->input('genre'); -->
     </div>
     <div class="col-12">
         <label for="#">Actors</label>
@@ -46,7 +36,7 @@
         <div class="col-md-6">
             <label for="actors[]" class="form-label">Actor</label>
             <select name="actors[]" class="form-select">
-                @foreach($actors as $a)
+                @foreach ($actors as $a)
                     <option value="{{ $a->name }}">{{ $a->name }}</option>
                 @endforeach
             </select>

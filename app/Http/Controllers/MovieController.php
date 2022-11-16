@@ -17,7 +17,7 @@ class MovieController extends Controller
         $actors = Actor::all();
         return view('createMovie', ['genres' => $genres, 'actors' => $actors]);
     }
-    
+
     public function insertMovie (Request $req) {
         $rules = [
             'title' => 'required|min:2|max:50',
@@ -31,27 +31,27 @@ class MovieController extends Controller
             'director' => 'required|min:3',
             'releaseDate' => 'required',
             'imgUrl' => 'required|mimes:jpeg,jpg,png,gif',
-            'backgroundUrl' => 'required|mimes:jpeg,jpg,png,gif',
+            'backgroundUrl' => 'required|mimes:jpeg,jpg,png,gif'
         ];
         $validator = Validator::make($req->all(), $rules);
+        // dump($req);
 
         if ($validator->fails()) {
             return back()->withErrors($validator);
-        }
-        else {
+        } else {
             $movie = new Movie();
             $movie->title = $req->title;
             $movie->description = $req->description;
             $movie->director = $req->director;
             $movie->release_date = $req->releaseDate;
-            
+
             // movie thumbnail
             $thumbnail = $req->file('imgUrl');
             $imageName = $movie->title.$movie->release_date.'.'.$thumbnail->getClientOriginalExtension();
             Storage::putFileAs('public/images', $thumbnail, $imageName);
             $imageName = 'images/movie_images/'.$imageName;
             $movie->img_url = $imageName;
-            
+
             // movie background
             $thumbnail = $req->file('backgroundUrl');
             $imageName = $movie->title.$movie->release_date.'.'.$thumbnail->getClientOriginalExtension();
@@ -59,7 +59,7 @@ class MovieController extends Controller
             $imageName = 'images/movie_backgrounds/'.$imageName;
             $movie->background_url = $imageName;
             $movie->save();
-            
+
             // insert genres
             foreach ($req->genre as $g) {
                 $genre = Genre::where('genre', $g)->first();
