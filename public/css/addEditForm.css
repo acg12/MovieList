@@ -3,3 +3,9 @@
     background-color: rgb(26, 26, 26);
     border: None;
 }
+
+.content {
+    padding: 5% 13%;
+    background-color: black;
+    color: white;
+}

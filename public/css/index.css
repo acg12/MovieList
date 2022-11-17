@@ -1,37 +1,43 @@
-#carousel {
-    height: 80vh;
+body {
+    padding: 0;
+    margin: 0;
+    background-color: black;
+    color: white;
+    /* mo taro font ga? montserrat cakeup ueue */
+}
+
+.carousel-inner {
+    height: 90%;
+}
+
+.carousel-item {
+    height: 90%;
+}
+
+.carousel-item > img {
+    height: 100vh;
+    object-fit: cover;
+    object-position: center 30%;
+}
+
+.gradient-block {
+    position: absolute;
     width: 100vw;
-    background-color: white;
+    height: 100%;
+    z-index: 1;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 1) 30%, rgba(255, 0, 0, 0));
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
+.carousel-caption {
+    z-index: 100;
+    width: 40vw;
 }
 
-.container-title {
-    padding: 20px;
-    font-size: 15px;
+.card-img-top {
+    object-fit: cover
 }
 
-#popular {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-}
-
-.popular-card {
-    padding: 12px;
-}
-
-.card-img {
-    width: 130px;
-    height: 180px;
-    border-radius: 10px;
-    background-color: blue;
-    /* tinggal diganti background-img */
-}
-
-.title {
-    margin: 10px 0;
+.card {
+    padding: 0;
+    background-color: black;
 }

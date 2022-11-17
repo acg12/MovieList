@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'MovieList | Create Movie Page')
+@section('title', 'MovieList | Edit Movie Page')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/addEditForm.css') }}">
@@ -10,16 +10,16 @@
 @if ($errors->any())
 <h4>{{$errors->first()}}</h4>
 @endif
-<div class="fs-3 text fw-bolder">Add Movie</div>
-<form action="/movies/add" method="post" enctype="multipart/form-data" class="row g-3">
+<div class="fs-3 text fw-bolder">Edit Movie</div>
+<form action="/movies/editData/{{$movie->id}}" method="post" enctype="multipart/form-data" class="row g-3">
     @csrf
     <div class="col-12">
         <label for="title" class="form-label">Title</label>
-        <input type="text" name="title" class="form-control">
+        <input type="text" name="title" class="form-control" placeholder="{{$movie->title}}">
     </div>
     <div class="col-12">
         <label for="description" class="form-label">Description</label>
-        <textarea class="form-control" name="description" rows="3"></textarea>
+        <textarea class="form-control" name="description" rows="3" placeholder="{{$movie->description}}"></textarea>
     </div>
     <div class="col-12">
         <label for="genre[]" class="form-label">Genre</label>
@@ -51,7 +51,7 @@
     </div>
     <div class="col-12">
         <label for="director" class="form-label">Director</label>
-        <input type="text" name="director" class="form-control">
+        <input type="text" name="director" class="form-control" placeholder="{{$movie->director}}">
     </div>
     <div class="col-12">
         <label for="releaseDate" class="form-label">Release Date</label>

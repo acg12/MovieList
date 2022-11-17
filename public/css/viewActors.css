@@ -1,0 +1,22 @@
+.content {
+  padding: 5% 13%;
+  background-color: black;
+  color: white;
+}
+
+.row {
+  margin: 5px 0px;
+}
+
+.text {
+  color: red;
+}
+
+.card {
+  background-color: rgb(26, 26, 26);
+}
+
+.card img {
+  padding: 5px;
+  height: 20vw;
+}

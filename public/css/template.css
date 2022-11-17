@@ -3,8 +3,7 @@ body {
     margin: 0;
     background-color: black;
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    overflow-x: hidden;
   /* mo taro font ga? montserrat cakeup ueue */
 }
 
@@ -38,11 +37,11 @@ nav {
     color: red;
 }
 
-.content {
+/* .content {
     padding: 5% 13%;
     background-color: black;
     color: white;
-}
+} */
 
 .content h1 {
     text-align: center;
@@ -85,4 +84,10 @@ footer {
 
 h4 {
     text-align: center;
+}
+
+.form-control, .form-select {
+    color: white;
+    background-color: rgb(26, 26, 26);
+    border: None;
 }

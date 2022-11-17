@@ -1,3 +1,9 @@
+.content {
+    padding: 5% 13%;
+    background-color: black;
+    color: white;
+}
+
 .c_form-label {
     width: 170px;
     border: none;

@@ -20,8 +20,8 @@ class MovieSeeder extends Seeder
             'description' => "The people of Wakanda fight to protect their home from intervening world powers as they mourn the death of King T'Challa.",
             'director' => 'Ryan Coogler',
             'release_date' => date('2022-11-09'),
-            'img_url' => 'movie_images/1.jpg',
-            'background_url' => 'movie_backgrounds/1.jpg',
+            'img_url' => 'images/movie_images/blackpanther.jpg',
+            'background_url' => 'images/movie_backgrounds/blackpanther.jpg',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
