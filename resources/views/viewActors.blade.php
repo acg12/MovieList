@@ -12,12 +12,12 @@
     <div class="fs-3 text fw-bolder">Actors</div>
   </div>
   <div class="col">
-    <div class="input-group mb-3">
-      <form action="{{url('/view/search')}}">
-        <input class="form-control me-2" type="search" placeholder="Search" name="search">
-        <button class="btn btn-outline-success" type="submit"><span class="fas fa-search"></span></button>
-      </form>
-    </div>
+    <form action="/actors">
+        <div class="input-group">
+            <input type="search" name="search" class="form-control" placeholder="Search Actors" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fas fa-search"></i></button>
+        </div>
+    </form>
   </div>
   @if (Auth::check() && Auth::user()->role == 'admin')
     <div class="col-auto">
@@ -33,13 +33,17 @@
         <div class="card-body">
           <h5 class="card-title">{{$a->name}}</h5>
           <p class="card-text">
-            {{substr($a->movies[0]->title, 0, 35)}}
+            @if ($a->movies->isEmpty())
+                No movies yet.
+            @else
+                {{substr($a->movies[0]->title, 0, 35)}}
+            @endif
           </p>
         </div>
       </div>
     </div>
   @empty
-      
+    No actors yet.
   @endforelse
 </div>
 @endsection

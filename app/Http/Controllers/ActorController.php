@@ -95,8 +95,8 @@ class ActorController extends Controller
         }
     }
 
-    public function viewActors () {
-        $actors = Actor::all();
+    public function viewActors (Request $req) {
+        $actors = Actor::where("name", "LIKE", "%$req->search%")->get();
         return view('viewActors', ['actors' => $actors]);
     }
 }
