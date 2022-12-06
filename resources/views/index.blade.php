@@ -41,18 +41,54 @@
     <h1 class="h5 text-start">Popular</h1>
 </div>
 <div class="container">
-    <div class="d-flex flex-wrap row flex-md-row justify-content-md-between">
-        @forelse ($popular as $p)
-        <div class="card" style="width: 12rem;">
+    <div class="d-flex flex-wrap row flex-md-row justify-content-md-start">
+        @foreach ($popular as $p)
+        <div class="card mx-3" style="width: 12rem;">
             <img src="{{ Storage::url($p->img_url) }}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title fs-6">{{ $p->title }}</h5>
-                <p class="card-text fs-6">{{ $p->getReleaseYear() }}}</p>
+                <p class="card-text fs-6">{{ $p->getReleaseYear() }}</p>
             </div>
         </div>
-        @empty
-        @endforelse
+        @endforeach
     </div>
 </div>
-
+<div class="container-fluid navbar px-5 py-4">
+    <div>
+        <h1 class="h5 text-start">Show</span>
+    </div>
+    <form class="d-flex" role="search">
+        <input class="me-2" name="search" type="search" placeholder="Search" aria-label="Search" value="{{ isset($query) ? $query : null }}">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+</div>
+<div class="d-flex flex-row flex-wrap px-5">
+    <form>
+        @foreach($genres as $g)
+        @if (isset($genre))
+        <!-- if genre is active (lagi milih genre) -->
+            @if ($genre == $g->genre)
+            <button name="genre" value="{{ $g->genre }}" type="submit" class="btn btn-primary active genre px-4 py-1">{{ $g->genre }}</button>
+            @else
+            <button name="genre" value="{{ $g->genre }}" type="submit" class="btn btn-primary genre px-4 py-1">{{ $g->genre }}</button>
+            @endif
+        @else
+        <button name="genre" value="{{ $g->genre }}" type="submit" class="btn btn-primary genre px-4 py-1">{{ $g->genre }}</button>
+        @endif
+        @endforeach
+    </form>
+</div>
+<div class="container">
+    <div class="d-flex flex-wrap row flex-md-row justify-content-md-start">
+        @foreach ($movies as $m)
+        <div class="card mx-3" style="width: 12rem;">
+            <img src="{{ Storage::url($m->img_url) }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title fs-6">{{ $m->title }}</h5>
+                <p class="card-text fs-6">{{ $m->getReleaseYear() }}</p>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
 @endsection

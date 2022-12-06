@@ -154,6 +154,22 @@ class MovieController extends Controller
         return $popular;
     }
 
+    public static function searchMovies($query) {
+        $movies = Movie::where('title', 'LIKE', "%$query%")->get();
+        return $movies;
+    }
+
+    public static function getAllMovies() {
+        return Movie::all();
+    }
+
+    public static function getMoviesByGenre($genreId) {
+        $movies = Movie::whereHas('genres', function($query) use ($genreId) {
+            $query->where('genre_id', $genreId);
+        })->get();
+        return $movies;
+    }
+
     // public function viewActorMovie($id) {
     //     $genres = Genre::all();
     //     $actors = Actor::all();

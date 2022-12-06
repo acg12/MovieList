@@ -99,4 +99,17 @@ class ActorController extends Controller
         $actors = Actor::all();
         return view('viewActors', ['actors' => $actors]);
     }
+
+    public function actorDetails ($id) {
+        $actor = Actor::where('id', $id)->first();
+        return view('actorDetails', ['actor' => $actor]);
+    }
+
+    public function removeActor ($id) {
+        $actor = Actor::where('id', $id)->first();
+        Storage::delete('public/'.$actor->img_url);
+        $actor->delete();
+
+        return redirect()->back();
+    }
 }

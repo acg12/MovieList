@@ -1,0 +1,51 @@
+.content {
+  padding: 5% 13%;
+  background-color: black;
+  color: white;
+}
+
+.c_col {
+  width: 300px;
+}
+
+.img-fluid {
+  background-color: darkgray;
+  padding: 2px;
+  height: 400px;
+}
+
+.overlay {
+  margin-left: 200px;
+  position: absolute;
+}
+
+.btn_img {
+  border-radius: 50px;
+  margin-right: 5px;
+}
+
+.img_dark {
+  filter: brightness(30%);
+}
+
+.box {
+  margin: 20px 0px;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.row {
+  margin: 5px 0px;
+  margin-left: -15px;
+}
+
+.card {
+  background-color: rgb(26, 26, 26);
+}
+
+.card img {
+  padding: 5px;
+  height: 20vw;
+}
