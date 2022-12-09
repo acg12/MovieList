@@ -60,5 +60,49 @@ class ActorSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+        DB::table('actors')->insert([
+            'name' => 'Ralph Fiennes',
+            'gender' => 'Male',
+            'biography' => "Actor Ralph Nathaniel Twisleton-Wykeham-Fiennes was born on December 22, 1962 in Suffolk, England, to Jennifer Anne Mary Alleyne (Lash), a novelist, and Mark Fiennes, a photographer. He is the eldest of six children. Four of his siblings are also in the arts: Martha Fiennes, a director; Magnus Fiennes, a musician; Sophie Fiennes, a producer; and Joseph Fiennes, an actor. He is of English, Irish, and Scottish origin.",
+            'date_of_birth' => date('1962-12-22'),
+            'place_of_birth' => 'Ipswich, Suffolk, England, UK',
+            'img_url' => 'images/actor_images/5.jpg',
+            'popularity' => 135.2,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('actors')->insert([
+            'name' => 'Anya Taylor-Joy',
+            'gender' => 'Female',
+            'biography' => "Anya-Josephine Marie Taylor-Joy (born 16 April 1996) is a British-American actress. She is best known for her roles as Beth Harmon in The Queen's Gambit (2020), Thomasin in the period horror film The Witch (2015), as Casey Cooke in the horror-thriller Split (2016), and as Lily in the black comedy thriller Thoroughbreds (2017). She has been the recipient of the Cannes Film Festival's Trophée Chopard and was nominated for the BAFTA Rising Star Award.",
+            'date_of_birth' => date('1996-04-16'),
+            'place_of_birth' => 'Miami, Florida, USA',
+            'img_url' => 'images/actor_images/6.jpg',
+            'popularity' => 133.9,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('actors')->insert([
+            'name' => 'Nicholas Hoult',
+            'gender' => 'Male',
+            'biography' => "Nicholas Hoult was born on December 7, 1989 in Wokingham, Berkshire, England, UK as Nicholas Caradoc Hoult. His parents are Glenis Hoult, a piano teacher and Roger Hoult, a pilot. He has three siblings, two sisters and one brother. His great-aunt was one of the most popular actresses of her time, Dame Anna Neagle. He attended Sylvia Young Theatre School, a school for performing arts, to start acting as a career.",
+            'date_of_birth' => date('1989-12-07'),
+            'place_of_birth' => 'Wokingham, Berkshire, England, UK',
+            'img_url' => 'images/actor_images/7.jpg',
+            'popularity' => 132.1,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('actors')->insert([
+            'name' => 'Hong Chau',
+            'gender' => 'Female',
+            'biography' => "Hong Chau (born 1979) is an American actress known for her appearance in the US film Downsizing (2017) as Vietnamese amputee and political activist Ngoc Lan Tran. For her performance, she was nominated for Golden Globe Award for Best Supporting Actress - Motion Picture, the Screen Actors Guild Award for Outstanding Performance by a Female Actor in a Supporting Role, and several other awards for best supporting actress. Before Downsizing, she appeared in the US television series Treme (2010-2013) and the US film Inherent Vice (2014). In 2018, she appeared as a guest star in several TV series.",
+            'date_of_birth' => date('1979-06-25'),
+            'place_of_birth' => 'Thailand',
+            'img_url' => 'images/actor_images/8.jpg',
+            'popularity' => 130.2,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 }

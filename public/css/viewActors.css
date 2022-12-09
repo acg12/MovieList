@@ -17,6 +17,16 @@
 }
 
 .card img {
-  padding: 5px;
+  padding: 10px;
   height: 20vw;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.page-link {
+  background-color: rgb(26, 26, 26);
+  border: none;
+  color: white;
 }

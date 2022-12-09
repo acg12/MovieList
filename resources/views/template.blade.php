@@ -18,7 +18,7 @@
         <div class="menu">
             <a href="/">Home</a>
             <a href="#">Movies</a>
-            <a href="#">Actors</a>
+            <a href="/actors">Actors</a>
             @auth
             @if(Auth::user()->role == 'member')
             <a href="#">My Watchlist</a>

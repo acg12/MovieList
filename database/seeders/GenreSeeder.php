@@ -25,6 +25,7 @@ class GenreSeeder extends Seeder
             ['genre' => 'Thriller'],
             ['genre' => 'Family'],
             ['genre' => 'History'],
+            ['genre' => 'Horror']
         ]);
     }
 }

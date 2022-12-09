@@ -34,5 +34,25 @@ class ActorMovieSeeder extends Seeder
             'actor_id' => 4,
             'character_name' => "M'Baku"
         ]);
+        DB::table('actor_movie')->insert([
+            'movie_id' => 2,
+            'actor_id' => 5,
+            'character_name' => 'Chef Slowik'
+        ]);
+        DB::table('actor_movie')->insert([
+            'movie_id' => 2,
+            'actor_id' => 6,
+            'character_name' => 'Margot'
+        ]);
+        DB::table('actor_movie')->insert([
+            'movie_id' => 2,
+            'actor_id' => 7,
+            'character_name' => 'Tyler'
+        ]);
+        DB::table('actor_movie')->insert([
+            'movie_id' => 2,
+            'actor_id' => 8,
+            'character_name' => "Elsa"
+        ]);
     }
 }

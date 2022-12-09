@@ -5,31 +5,37 @@
 }
 
 .c_col {
-  width: 300px;
+  width: 30vh;
+  margin-right: 5px;
 }
 
-.img-fluid {
-  background-color: darkgray;
-  padding: 2px;
-  height: 400px;
+.card-header {
+  padding: 0px 7px 0px 0px;
 }
 
-.overlay {
-  margin-left: 200px;
-  position: absolute;
+.card-header .fw-light {
+  margin: 0px;
 }
 
 .btn_img {
   border-radius: 50px;
-  margin-right: 5px;
+  margin-left: 5px;
 }
 
-.img_dark {
+.c_col .card-img-top {
+  height: 350px;
+}
+
+.img_dark:hover {
   filter: brightness(30%);
 }
 
 .box {
   margin: 20px 0px;
+}
+
+.fw-bold {
+  margin-bottom: 5px;
 }
 
 .text-justify {
@@ -46,6 +52,6 @@
 }
 
 .card img {
-  padding: 5px;
+  padding: 10px;
   height: 20vw;
 }

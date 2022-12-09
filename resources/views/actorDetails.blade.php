@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('title', 'MovieList | View Actors')
+@section('title', 'MovieList | Actor Details')
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/actorDetails.css') }}">
@@ -9,17 +9,23 @@
 @section('content')
 <div class="row g-3">
   <div class="col-sm-5 c_col">
-      @if (Auth::check() && Auth::user()->role == 'admin')
-        <img src="{{Storage::url('public/'.$actor->img_url)}}" class="img-fluid img-thumbnail img_dark" alt="...">
-        <div class="overlay">
-          <div class="d-flex justify-content-end">
-            <button type="button" class="btn btn-danger btn_img"><i class="far fa-edit"><a href="/actors/edit/{{$actor->id}}"></a></i></button>
-            <button type="button" class="btn btn-danger btn_img"><i class="far fa-trash-alt"><a href="/actors/remove/{{$actor->id}}"></a></i></button>
-          </div>
+    <div class="card">
+        <div class="card-header d-flex bd-highlight">
+            <div class="p-2 flex-grow-1 bd-highlight">
+                <p class="fs-3 fw-light">Profile</p>
+            </div>
+    @if (Auth::check() && Auth::user()->role == 'admin')
+            <div class="p-2 bd-highlight">
+                <a href="/actors/edit/{{$actor->id}}"><button type="button" class="btn btn-danger btn_img"><i class="fa fa-edit"></i></button></a>
+                <a href="/actors/remove/{{$actor->id}}"><button type="button" class="btn btn-danger btn_img"><i class="fa fa-trash-o"></i></button></a>
+            </div>
         </div>
-        @else
-        <img src="{{Storage::url('public/'.$actor->img_url)}}" class="img-fluid img-thumbnail" alt="...">
-      @endif
+        <img src="{{Storage::url('public/'.$actor->img_url)}}" class="card-img-top img_dark" alt="...">
+    @else
+        </div>
+        <img src="{{Storage::url('public/'.$actor->img_url)}}" class="card-img-top" alt="...">
+    @endif
+    </div>
       <div class="box">
         <div class="fs-3 fw-bolder">Personal Info</div>
         <div class="box">
@@ -41,7 +47,7 @@
       </div>
   </div>
   <div class="col">
-    <div class="fs-3 fw-bolder">{{$actor->name}}</div>
+    <div class="fs-1 fw-bolder">{{$actor->name}}</div>
       <div class="box">
         <p class="fs-5 fw-bold">Biography</p>
         <p class="fw-light text-justify">{{$actor->biography}}</p>
@@ -61,18 +67,6 @@
           @empty
           @endforelse
         </div>
-        
-    <!-- <div class="d-flex flex-wrap row flex-md-row justify-content-md-start">
-        @foreach ($actor->movies as $p)
-        <div class="card mx-3" style="width: 12rem;">
-            <img src="{{ Storage::url($p->img_url) }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title fs-6">{{ $p->title }}</h5>
-            </div>
-        </div>
-        @endforeach
-    </div> -->
-</div>
       </div>
     </div>
   </div>

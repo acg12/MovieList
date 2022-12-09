@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Controller::class, 'index']);
 Route::get('/actors', [ActorController::class, 'viewActors']);
-Route::get('/actors/{id}', [ActorController::class, 'actorDetails']);
+Route::get('/actors/view/{id}', [ActorController::class, 'actorDetails']);
 
 Route::group(['middleware' => 'guestsecurity'], function () {
     Route::get('/loginPage', [UserController::class, 'viewLogin']);
@@ -42,7 +42,8 @@ Route::group(['middleware' => 'adminsecurity'], function () {
     Route::get('/actors/add', [ActorController::class, 'createActor']);
     Route::get('/movies/edit/{id}', [MovieController::class, 'editMovie']);
     Route::get('/actors/edit/{id}', [ActorController::class, 'editActor']);
-    Route::get('/actors/remove/{id}', [ActorController::class, 'removeActor']);
+
+    Route::delete('/actors/remove/{id}', [ActorController::class, 'removeActor']);
 
     Route::post('/movies/add', [MovieController::class, 'insertMovie']);
     Route::post('/actors/add', [ActorController::class, 'insertActor']);
