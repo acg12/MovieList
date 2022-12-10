@@ -170,6 +170,16 @@ class MovieController extends Controller
         return $movies;
     }
 
+    public static function sortMovies($sort) {
+        if ($sort == 'latest') {
+            return Movie::all()->sortByDesc('release_date');
+        } else if ($sort == 'ascending') {
+            return Movie::orderBy('title')->get()->sortBy('title', SORT_NATURAL | SORT_FLAG_CASE);
+        } else if ($sort == 'descending') {
+            return Movie::orderBy('title')->get()->sortByDesc('title', SORT_NATURAL | SORT_FLAG_CASE);
+        }
+    }
+
     // public function viewActorMovie($id) {
     //     $genres = Genre::all();
     //     $actors = Actor::all();

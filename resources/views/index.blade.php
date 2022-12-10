@@ -53,7 +53,7 @@
         @endforeach
     </div>
 </div>
-<div class="container-fluid navbar px-5 py-4">
+<div id="shows" class="container-fluid navbar px-5 py-4">
     <div>
         <h1 class="h5 text-start">Show</span>
     </div>
@@ -62,21 +62,56 @@
         <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
 </div>
+@if(isset($query))
+<div class="container-fluid px-5 pb-4 text-end">
+    <a href="/#shows">Clear search results</a>
+</div>
+@endif
 <div class="d-flex flex-row flex-wrap px-5">
     <form>
         @foreach($genres as $g)
         @if (isset($genre))
         <!-- if genre is active (lagi milih genre) -->
-            @if ($genre == $g->genre)
-            <button name="genre" value="{{ $g->genre }}" type="submit" class="btn btn-primary active genre px-4 py-1">{{ $g->genre }}</button>
-            @else
-            <button name="genre" value="{{ $g->genre }}" type="submit" class="btn btn-primary genre px-4 py-1">{{ $g->genre }}</button>
-            @endif
+        @if ($genre == $g->genre)
+        <button name="genre" value="{{ $g->genre }}" type="submit" class="btn btn-primary active genre px-4 py-1">{{ $g->genre }}</button>
+        @else
+        <button name="genre" value="{{ $g->genre }}" type="submit" class="btn btn-primary genre px-4 py-1">{{ $g->genre }}</button>
+        @endif
         @else
         <button name="genre" value="{{ $g->genre }}" type="submit" class="btn btn-primary genre px-4 py-1">{{ $g->genre }}</button>
         @endif
         @endforeach
     </form>
+    @if(isset($genre))
+    <a class="py-2 px-5" href="/#shows">Clear filter</a>
+    @endif
+</div>
+<div class="d-flex flex-row flex-wrap px-5">
+    <p>Sort by:</p>
+    <form>
+        @if (isset($sort))
+        @if ($sort == "latest")
+        <button name="sort" value="latest" type="submit" class="btn btn-primary active sort px-4 py-1">Latest</button>
+        <button name="sort" value="ascending" type="submit" class="btn btn-primary sort px-4 py-1">A-Z</button>
+        <button name="sort" value="descending" type="submit" class="btn btn-primary sort px-4 py-1">Z-A</button>
+        @elseif ($sort == "ascending")
+        <button name="sort" value="latest" type="submit" class="btn btn-primary sort px-4 py-1">Latest</button>
+        <button name="sort" value="ascending" type="submit" class="btn btn-primary active sort px-4 py-1">A-Z</button>
+        <button name="sort" value="descending" type="submit" class="btn btn-primary sort px-4 py-1">Z-A</button>
+        @elseif ($sort == "descending")
+        <button name="sort" value="latest" type="submit" class="btn btn-primary sort px-4 py-1">Latest</button>
+        <button name="sort" value="ascending" type="submit" class="btn btn-primary sort px-4 py-1">A-Z</button>
+        <button name="sort" value="descending" type="submit" class="btn btn-primary active sort px-4 py-1">Z-A</button>
+        @endif
+        @else
+        <button name="sort" value="latest" type="submit" class="btn btn-primary sort px-4 py-1">Latest</button>
+        <button name="sort" value="ascending" type="submit" class="btn btn-primary sort px-4 py-1">A-Z</button>
+        <button name="sort" value="descending" type="submit" class="btn btn-primary sort px-4 py-1">Z-A</button>
+        @endif
+    </form>
+    @if(isset($sort))
+    <a class="py-2 px-5" href="/#shows">Clear sort by</a>
+    @endif
 </div>
 <div class="container">
     <div class="d-flex flex-wrap row flex-md-row justify-content-md-start">

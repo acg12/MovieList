@@ -30,8 +30,10 @@ class Controller extends BaseController
             return view('index', ['carousels' => $carousels, 'popular' => $popular, 'genres' => $genres, 'movies' => $movies, 'genre' => $genre]);
         }
         
-        if ($req->sortby != null) {
-            
+        if ($req->sort != null) {
+            $sort = $req->sort;
+            $movies = MovieController::sortMovies($sort);
+            return view('index', ['carousels' => $carousels, 'popular' => $popular, 'genres' => $genres, 'movies' => $movies, 'sort' => $sort]);
         }
         $movies = MovieController::getAllMovies();
         return view('index', ['carousels' => $carousels, 'popular' => $popular, 'genres' => $genres, 'movies' => $movies]);

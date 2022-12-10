@@ -49,3 +49,11 @@ body {
     margin-bottom: 2vh;
     margin-left: 2vw;
 }
+
+.sort {
+    background-color: rgb(66, 66, 66);
+    border-radius: 25px;
+    border: none;
+    margin-bottom: 2vh;
+    margin-left: 2vw;
+}
