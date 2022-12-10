@@ -43,7 +43,7 @@ Route::group(['middleware' => 'adminsecurity'], function () {
     Route::get('/movies/edit/{id}', [MovieController::class, 'editMovie']);
     Route::get('/actors/edit/{id}', [ActorController::class, 'editActor']);
 
-    Route::delete('/actors/remove/{id}', [ActorController::class, 'removeActor']);
+    Route::get('/actors/remove/{id}', [ActorController::class, 'removeActor']);
 
     Route::post('/movies/add', [MovieController::class, 'insertMovie']);
     Route::post('/actors/add', [ActorController::class, 'insertActor']);

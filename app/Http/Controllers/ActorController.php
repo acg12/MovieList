@@ -110,6 +110,6 @@ class ActorController extends Controller
         Storage::delete('public/'.$actor->img_url);
         $actor->delete();
 
-        return redirect()->back();
+        return redirect()->action([ActorController::class, 'viewActors']);
     }
 }
