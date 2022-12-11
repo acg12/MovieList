@@ -28,7 +28,7 @@
                     Profile
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a href="#"><button class="dropdown-item">Profile</button></a></li>
+                    <li><a href="/profile/edit"><button class="dropdown-item">Profile</button></a></li>
                     <li><a href="/logout"><button class="dropdown-item">Logout</button></a></li>
                 </ul>
             </div>

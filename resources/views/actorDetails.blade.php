@@ -26,7 +26,7 @@
         <img src="{{Storage::url('public/'.$actor->img_url)}}" class="card-img-top" alt="...">
     @endif
     </div>
-      <div class="box">
+    <div class="box">
         <div class="fs-3 fw-bolder">Personal Info</div>
         <div class="box">
           <p class="fw-bold">Popularity</p>
@@ -44,7 +44,7 @@
           <p class="fw-bold">Place of Birth</p>
           <p class="fw-light">{{$actor->place_of_birth}}</p>
         </div>
-      </div>
+    </div>
   </div>
   <div class="col">
     <div class="fs-1 fw-bolder">{{$actor->name}}</div>
@@ -54,20 +54,19 @@
       </div>
       <div class="box">
         <p class="fs-5 fw-bold">Known For</p>
-        <div class="row row-cols-1 row-cols-md-3">
-          @forelse ($actor->movies as $a)
+        <div class="row row-cols-1 row-cols-md-5 g-3">
+            @forelse ($actor->movies as $a)
             <div class="col">
-              <div class="card h-100">
+                <div class="card h-100">
                 <img src="{{Storage::url('public/'.$a->img_url)}}" class="card-img-top" alt="...">
                 <div class="card-body">
-                  <h5 class="card-title">{{$a->title}}</h5>
+                    <h5 class="card-title">{{$a->title}}</h5>
                 </div>
-              </div>
             </div>
-          @empty
-          @endforelse
+            @empty
+            No actors yet.
+            @endforelse
         </div>
-      </div>
     </div>
   </div>
 </div>

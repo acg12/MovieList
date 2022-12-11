@@ -30,6 +30,9 @@ Route::group(['middleware' => 'guestsecurity'], function () {
 
 Route::group(['middleware' => 'loggedinsecurity'], function () {
     Route::get('/logout', [UserController::class, 'logout']);
+    Route::get('/profile/edit', [UserController::class, 'edit']);
+    Route::post('/profile/editData', [UserController::class, 'editData']);
+    Route::post('/profile/editImage', [UserController::class, 'editImage']);
 });
 
 Route::group(['middleware' => 'memberinsecurity'], function () {
