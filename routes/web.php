@@ -35,8 +35,10 @@ Route::group(['middleware' => 'loggedinsecurity'], function () {
     Route::post('/profile/editImage', [UserController::class, 'editImage']);
 });
 
-Route::group(['middleware' => 'memberinsecurity'], function () {
+Route::group(['middleware' => 'membersecurity'], function () {
     // Route::get('/logout', [UserController::class, 'logout']);
+    Route::get('/watchlist/add/{id}', [UserController::class, 'addMovieToWatchlist']);
+    Route::get('/watchlist/remove/{id}', [UserController::class, 'removeMovieFromWatchlist']);
 });
 
 Route::group(['middleware' => 'adminsecurity'], function () {

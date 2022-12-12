@@ -119,4 +119,16 @@ class UserController extends Controller
             return redirect()->back();
         }
     }
+
+    public function addMovieToWatchlist($movieId) {
+        $user = User::find(Auth::user()->id);
+        $user->watchlists()->attach($movieId);
+        return redirect()->back();
+    }
+
+    public function removeMovieFromWatchlist($movieId) {
+        $user = User::find(Auth::user()->id);
+        $user->watchlists()->detach($movieId);
+        return redirect()->back();
+    }
 }
