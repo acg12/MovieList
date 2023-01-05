@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -128,28 +129,39 @@ class UserController extends Controller
         if (isset($req)) {
             $movies = Movie::whereHas('watchlists', function($query) use ($user_id) {
                 $query->where('user_id', $user_id);
-            })->whereHas('watchlists', function($query) use ($search) {
-                $query->where("name", "LIKE", "%$search%");
-            })->simplePaginate(15);
+            })->where("title", "LIKE", "%$search%")->simplePaginate(15);
         } else {
             $movies = Movie::whereHas('watchlists', function($query) use ($user_id) {
                 $query->where('user_id', $user_id);
             })->simplePaginate(15);
         }
 
-
         return view('watchlists', ['movies' => $movies]);
     }
 
-    public function addMovieToWatchlist($movieId) {
+    public function addMovieToWatchlist ($movieId) {
         $user = User::find(Auth::user()->id);
         $user->watchlists()->attach($movieId);
         return redirect()->back();
     }
 
-    public function removeMovieFromWatchlist($movieId) {
+    public function removeMovieFromWatchlist ($movieId) {
         $user = User::find(Auth::user()->id);
         $user->watchlists()->detach($movieId);
+        return redirect()->back();
+    }
+
+    public function changeStatus (Request $req) {
+        $user = Auth::user();
+        $user_id = $user->id;
+        if ($req->status == 'Remove') {
+            $movie = DB::table('watchlists')->where('user_id', $user_id)->first();
+            self::removeMovieFromWatchlist($movie->movie_id);
+        } else {
+            DB::table('watchlists')->where('user_id', $user_id)->update([
+                'status' => $req->status
+            ]);
+        }
         return redirect()->back();
     }
 }

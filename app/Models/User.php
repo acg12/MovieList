@@ -45,7 +45,7 @@ class User extends Authenticatable
     public function watchlists() {
         return $this->belongsToMany(Movie::class, 'watchlists');
     }
-    
+
     public function inUserWatchlist($movieId) {
         $temp = $this->watchlists()->where('movie_id', $movieId)->first();
         return ($temp != null) ? true : false;

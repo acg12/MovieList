@@ -19,11 +19,15 @@ class Movie extends Model
     }
 
     public function watchlists() {
-        return $this->belongsToMany(User::class, 'watchlists');
+        return $this->belongsToMany(User::class, 'watchlists')->withPivot('status');
     }
 
     public function getReleaseYear() {
         $year = Carbon::createFromFormat('Y-m-d', $this->release_date)->year;
         return $year;
+    }
+
+    public function watchStatus($user_id) {
+        return $this->watchlists()->where('user_id', $user_id)->first()['pivot']->status;
     }
 }
