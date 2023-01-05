@@ -7,6 +7,7 @@
 @section('title', 'MovieList | Home')
 
 @section('content')
+<!-- HEROES SECTION -->
 <div id="carousel-outer" class="carousel slide" data-bs-ride="carousel">
     <div class="gradient-block"></div>
     <div class="carousel-inner">
@@ -37,10 +38,11 @@
     </div>
 </div>
 </div>
+<!-- POPULAR SECTION -->
 <div class="container-fluid px-5 py-4">
     <h1 class="h5 text-start">Popular</h1>
 </div>
-<div class="container">
+<div class="container-fluid px-5">
     <div class="d-flex flex-wrap row flex-md-row justify-content-md-start">
         @foreach ($popular as $p)
         <div class="card mx-3" style="width: 12rem;">
@@ -67,6 +69,7 @@
     <a href="/#shows">Clear search results</a>
 </div>
 @endif
+<!-- GENRE FILTERS -->
 <div class="d-flex flex-row flex-wrap px-5">
     <form>
         @foreach($genres as $g)
@@ -86,6 +89,7 @@
     <a class="py-2 px-5" href="/#shows">Clear filter</a>
     @endif
 </div>
+<!-- SORT BY -->
 <div class="d-flex flex-row flex-wrap px-5">
     <p>Sort by:</p>
     <form>
@@ -113,14 +117,33 @@
     <a class="py-2 px-5" href="/#shows">Clear sort by</a>
     @endif
 </div>
-<div class="container">
+<!-- MOVIES SECTION -->
+<div class="container-fluid px-5 py-3">
+    <div class="container-fluid text-end pb-5">
+        @auth
+        @if(Auth::user()->role =='admin')
+        <button class="btn btn-danger"><a href="/movies/add">Add Movie</a></button>
+        @endif
+        @endauth
+    </div>
     <div class="d-flex flex-wrap row flex-md-row justify-content-md-start">
         @foreach ($movies as $m)
         <div class="card mx-3" style="width: 12rem;">
             <img src="{{ Storage::url($m->img_url) }}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title fs-6">{{ $m->title }}</h5>
-                <p class="card-text fs-6">{{ $m->getReleaseYear() }}</p>
+                <div class="d-flex flex-row flex-wrap justify-content-between">
+                    <p class="card-text fs-6">{{ $m->getReleaseYear() }}</p>
+                    @auth
+                    @if(Auth::user()->role == "member" && !Auth::user()->inUserWatchlist($m->id))
+                    <!-- <button name="addMovie" value="{{ $m->id }}" class="btn btn-primary" type="submit" aria-label="add"><i class="bi bi-plus-lg"></i></button> -->
+                    <a style="color: white" href="watchlist/add/{{ $m->id }}"><i class="bi bi-plus-lg"></i></a>
+                    @elseif(Auth::user()->role == "member" && Auth::user()->inUserWatchlist($m->id))
+                    <!-- <button name="removeMovie" value="{{ $m->id }}" class="btn btn-danger" type="submit" aria-label="add"><i class="bi bi-check-lg"></i></button> -->
+                    <a style="color: red;" href="watchlist/remove/{{ $m->id }}"><i class="bi bi-check-lg"></i></a>
+                    @endif
+                    @endauth
+                </div>
             </div>
         </div>
         @endforeach

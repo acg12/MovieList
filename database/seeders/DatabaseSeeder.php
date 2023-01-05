@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
             GenreSeeder::class,
             ActorMovieSeeder::class,
             GenreMovieSeeder::class,
-            WatchlistSeeder::class,
+            WatchlistSeeder::class
         ]);
     }
 }
