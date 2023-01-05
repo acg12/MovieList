@@ -45,11 +45,11 @@
         <img id="logo-footer" src="{{ asset('assets/logo.png') }}" alt="">
         <p>MovieList is a website that contains list of movies</p>
         <div id="soc-med">
-            <img class="logo-soc-med" src="{{ asset('assets/logo-ig.webp') }}" alt="">
-            <img class="logo-soc-med" src="{{ asset('assets/logo-fb.webp') }}" alt="">
-            <img class="logo-soc-med" src="{{ asset('assets/logo-reddit.png') }}" alt="">
-            <img class="logo-soc-med" src="{{ asset('assets/logo-yt.png') }}" alt="">
-            <img class="logo-soc-med" src="{{ asset('assets/logo-twitter.webp') }}" alt="">
+            <a href="https://www.instagram.com"> <img class="logo-soc-med" src="{{ asset('assets/logo-ig.webp') }}" alt=""> </a>
+            <a href="http://www.facebook.com"> <img class="logo-soc-med" src="{{ asset('assets/logo-fb.webp') }}" alt=""> </a>
+            <a href="http://www.reddit.com"> <img class="logo-soc-med" src="{{ asset('assets/logo-reddit.png') }}" alt=""> </a>
+            <a href="http://www.youtube.com"> <img class="logo-soc-med" src="{{ asset('assets/logo-yt.png') }}" alt=""> </a>
+            <a href="http://www.twitter.com"> <img class="logo-soc-med" src="{{ asset('assets/logo-twitter.webp') }}" alt=""> </a>
         </div>
         <div>
             Privacy Policy | Terms of Service | Contact Us | About Us

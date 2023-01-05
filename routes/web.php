@@ -33,6 +33,7 @@ Route::group(['middleware' => 'loggedinsecurity'], function () {
     Route::get('/profile/edit', [UserController::class, 'edit']);
     Route::post('/profile/editData', [UserController::class, 'editData']);
     Route::post('/profile/editImage', [UserController::class, 'editImage']);
+    Route::get('/watchlists', [UserController::class, 'watchlists']);
 });
 
 Route::group(['middleware' => 'memberinsecurity'], function () {

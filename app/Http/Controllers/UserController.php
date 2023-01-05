@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Movie;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -118,5 +119,25 @@ class UserController extends Controller
 
             return redirect()->back();
         }
+    }
+
+    public function watchlists (Request $req) {
+        $user = Auth::user();
+        $user_id = $user->id;
+        $search = $req->search;
+        if (isset($req)) {
+            $movies = Movie::whereHas('watchlists', function($query) use ($user_id) {
+                $query->where('user_id', $user_id);
+            })->whereHas('watchlists', function($query) use ($search) {
+                $query->where("name", "LIKE", "%$search%");
+            })->simplePaginate(15);
+        } else {
+            $movies = Movie::whereHas('watchlists', function($query) use ($user_id) {
+                $query->where('user_id', $user_id);
+            })->simplePaginate(15);
+        }
+
+
+        return view('watchlists', ['movies' => $movies]);
     }
 }

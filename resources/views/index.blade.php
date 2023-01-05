@@ -32,9 +32,9 @@
                     {{ $carousels[$i]->description }}
                 </p>
             </div>
+        @endfor
+        @endif
     </div>
-    @endfor
-    @endif
 </div>
 </div>
 <div class="container-fluid px-5 py-4">
