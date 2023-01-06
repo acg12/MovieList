@@ -18,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [Controller::class, 'index']);
+Route::get('/movies', [MovieController::class, 'viewMovies']);
+Route::get('/movies/view/{id}', [MovieController::class, 'movieDetails']);
 Route::get('/actors', [ActorController::class, 'viewActors']);
 Route::get('/actors/view/{id}', [ActorController::class, 'actorDetails']);
 

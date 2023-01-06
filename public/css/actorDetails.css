@@ -49,9 +49,19 @@
 
 .card {
   background-color: rgb(26, 26, 26);
+  margin-right: 20px;
+}
+
+.card-body {
+  height: 100px;
 }
 
 .card img {
   padding: 10px;
   height: 20vw;
+}
+
+.row a {
+  color: white;
+  text-decoration: none;
 }

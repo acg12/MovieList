@@ -16,6 +16,11 @@
   background-color: rgb(26, 26, 26);
 }
 
+.col a {
+  color: white;
+  text-decoration: none;
+}
+
 .card img {
   padding: 10px;
   height: 20vw;

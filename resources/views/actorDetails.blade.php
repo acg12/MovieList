@@ -55,16 +55,17 @@
       <div class="box">
         <p class="fs-5 fw-bold">Known For</p>
         <div class="row row-cols-1 row-cols-md-5 g-3">
-            @forelse ($actor->movies as $a)
-            <div class="col">
+            @forelse ($actor->movies as $m)
+              <a href="/movies/view/{{$m->id}}">
                 <div class="card h-100">
-                <img src="{{Storage::url('public/'.$a->img_url)}}" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">{{$a->title}}</h5>
+                  <img src="{{Storage::url('public/'.$m->img_url)}}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                      <h5 class="card-title">{{$m->title}}</h5>
+                  </div>
                 </div>
-            </div>
+              </a>
             @empty
-            No actors yet.
+            No movies yet.
             @endforelse
         </div>
     </div>

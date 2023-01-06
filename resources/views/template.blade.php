@@ -18,11 +18,11 @@
         <img id="logo-navbar" src="{{ asset('assets/logo.png') }}" alt="">
         <div class="menu">
             <a href="/">Home</a>
-            <a href="#">Movies</a>
+            <a href="/movies">Movies</a>
             <a href="/actors">Actors</a>
             @auth
             @if(Auth::user()->role == 'member')
-            <a href="#">My Watchlist</a>
+            <a href="/watchlists">My Watchlist</a>
             @endif
             <div class="btn-group">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">

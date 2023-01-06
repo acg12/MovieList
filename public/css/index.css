@@ -6,6 +6,10 @@ body {
     /* mo taro font ga? montserrat cakeup ueue */
 }
 
+#carousel-outer {
+    position: relative;
+}
+
 .carousel-inner {
     height: 90%;
 }
@@ -23,7 +27,7 @@ body {
 .gradient-block {
     position: absolute;
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     z-index: 1;
     background-image: linear-gradient(to right, rgba(0, 0, 0, 1) 30%, rgba(255, 0, 0, 0));
 }
@@ -56,4 +60,13 @@ body {
     border: none;
     margin-bottom: 2vh;
     margin-left: 2vw;
+}
+
+.movie-link {
+    text-decoration: none;
+    color: white;
+}
+
+.movie-link:hover {
+    color: gray;
 }

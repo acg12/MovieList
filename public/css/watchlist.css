@@ -58,3 +58,14 @@
     border: none;
     background-color: red;
 }
+
+.row .col-3 {
+    margin-top: 5px;
+    margin-left: -10px;
+}
+
+.col-3 label {
+    border: none;
+    background-color: transparent;
+    color: white;
+}

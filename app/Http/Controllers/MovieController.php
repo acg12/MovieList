@@ -145,6 +145,16 @@ class MovieController extends Controller
         }
     }
 
+    public function viewMovies (Request $req) {
+        $movies = Movie::where("title", "LIKE", "%$req->search%")->simplePaginate(15);
+        return view('viewMovies', ['movies' => $movies]);
+    }
+
+    public function movieDetails($id) {
+        $movie = Movie::find($id);
+        return view('movieDetails', ['movie' => $movie]);
+    }
+
     public static function getRandomMovies($n) {
         return Movie::inRandomOrder()->limit($n)->get();
     }

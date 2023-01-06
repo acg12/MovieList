@@ -16,7 +16,7 @@
             <p class="fs-3 fw-bold">My <span class='red-text'>Profile</span></p>
         </div>
         <a class="profile" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <img src="{{Storage::url('public/'.$user->img_url)}}" class="card-img-top mx-auto" alt="...">
+            <img src="{{$user->img_url}}" class="card-img-top mx-auto" alt="...">
         </a>
         <p class="fw-bold">{{$user->name}}</p>
         <p class="fw-light">{{$user->email}}</p>

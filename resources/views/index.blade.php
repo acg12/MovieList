@@ -33,8 +33,8 @@
                     {{ $carousels[$i]->description }}
                 </p>
             </div>
-        @endfor
-        @endif
+            @endfor
+            @endif
     </div>
 </div>
 </div>
@@ -48,9 +48,12 @@
         <div class="card mx-3" style="width: 12rem;">
             <img src="{{ Storage::url($p->img_url) }}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title fs-6">{{ $p->title }}</h5>
+                <a href="/movies/view/{{ $p->id }}" class="movie-link">
+                    <h5 class="card-title fs-6">{{ $p->title }}</h5>
+                </a>
                 <p class="card-text fs-6">{{ $p->getReleaseYear() }}</p>
             </div>
+
         </div>
         @endforeach
     </div>
@@ -131,7 +134,9 @@
         <div class="card mx-3" style="width: 12rem;">
             <img src="{{ Storage::url($m->img_url) }}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title fs-6">{{ $m->title }}</h5>
+                <a href="/movies/view/{{ $m->id }}" class="movie-link">
+                    <h5 class="card-title fs-6">{{ $m->title }}</h5>
+                </a>
                 <div class="d-flex flex-row flex-wrap justify-content-between">
                     <p class="card-text fs-6">{{ $m->getReleaseYear() }}</p>
                     @auth

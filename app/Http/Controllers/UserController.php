@@ -108,14 +108,7 @@ class UserController extends Controller
             return back()->withErrors($validator);
         } else {
             $temp = Auth::user();
-            if ($temp->img_url != 'images/profile_images/profile.png') Storage::delete('public/'.$temp->img_url);
-
-            $url = $req->img_url;
-            $contents = file_get_contents($url);
-            $imageName = $temp->name.time().'.'.substr($url, strrpos($url, '.') + 1);
-            Storage::put('public/images/profile_images/', $contents, $imageName);
-            $imageName = 'images/profile_images/' . $imageName;
-            $temp->img_url = $imageName;
+            $temp->img_url = $req->img_url;
             $temp->save();
 
             return redirect()->back();
@@ -126,17 +119,20 @@ class UserController extends Controller
         $user = Auth::user();
         $user_id = $user->id;
         $search = $req->search;
-        if (isset($req)) {
+        $status = $req->status;
+        if ($req->status) {
             $movies = Movie::whereHas('watchlists', function($query) use ($user_id) {
                 $query->where('user_id', $user_id);
-            })->where("title", "LIKE", "%$search%")->simplePaginate(15);
+            })->whereHas('watchlists', function($query) use ($status) {
+                $query->where('status', $status);
+            })->simplePaginate(15);
+            return view('watchlists', ['movies' => $movies, 'status' => $status]);
         } else {
             $movies = Movie::whereHas('watchlists', function($query) use ($user_id) {
                 $query->where('user_id', $user_id);
-            })->simplePaginate(15);
+            })->where("title", "LIKE", "%$search%")->simplePaginate(15);
+            return view('watchlists', ['movies' => $movies]);
         }
-
-        return view('watchlists', ['movies' => $movies]);
     }
 
     public function addMovieToWatchlist ($movieId) {
@@ -155,10 +151,10 @@ class UserController extends Controller
         $user = Auth::user();
         $user_id = $user->id;
         if ($req->status == 'Remove') {
-            $movie = DB::table('watchlists')->where('user_id', $user_id)->first();
-            self::removeMovieFromWatchlist($movie->movie_id);
+            $movie = DB::table('watchlists')->where('user_id', $user_id)->where('movie_id', $req->movie_id)->first();
+            self::removeMovieFromWatchlist($req->movie_id);
         } else {
-            DB::table('watchlists')->where('user_id', $user_id)->update([
+            DB::table('watchlists')->where('user_id', $user_id)->where('movie_id', $req->movie_id)->update([
                 'status' => $req->status
             ]);
         }

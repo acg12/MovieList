@@ -11,11 +11,42 @@
   <div class="col">
     <form action="/watchlists">
         <div class="input-group">
-            <input type="search" name="search" class="form-control" placeholder="Search Actors" aria-describedby="button-addon2">
+            <input type="search" name="search" class="form-control" placeholder="Search Movie" aria-describedby="button-addon2">
             <button class="btn btn-outline-secondary" type="submit" id="button-addon2"><i class="fa fa-search"></i></button>
         </div>
     </form>
   </div>
+</div>
+<div class="row"> 
+    <div class="col-3">
+        <form action="/watchlists">
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupFile01"><span class="fa fa-filter"></i></label>
+                <select onchange="this.form.submit();" name="status" class="form-select" aria-label="Default select example">
+                    @if (!isset($status))
+                        <option value="" selected>All</option>
+                    @else
+                        <option value="">All</option>
+                    @endif
+                    @if (isset($status) and $status == 'Planning')
+                        <option value="Planning" selected>Planned</option>
+                    @else
+                        <option value="Planning">Planned</option>
+                    @endif
+                    @if (isset($status) and $status == 'Watching')
+                        <option value="Watching" selected>Watching</option>
+                    @else
+                        <option value="Watching">Watching</option>
+                    @endif
+                    @if (isset($status) and $status == 'Finished')
+                        <option value="Finished" selected>Finished</option>
+                    @else
+                        <option value="Finished">Finished</option>
+                    @endif
+                </select>
+            </div>
+        </form>
+    </div>
 </div>
 <div class="row row-cols-1 row-cols-md-5 g-3">
     <table class="table table-dark table-borderless table-hover">
@@ -40,10 +71,8 @@
                     @endif
                 </td>
                 <td>
-                    <button class="edit_status">
-                    <a class="profile" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    <button type="button" class="edit_status profile" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-bs-whatever="{{$m->id}}">
                         <i class="fa fa-pencil"></i>
-                    </a>
                     </button>
                 </td>
             </tr>
@@ -79,8 +108,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <input type="hidden" name="movie_id">
                 <select name="status" class="form-select" aria-label="Default select example">
-                    <option value="Planning">Planning</option>
+                    <option value="Planning">Planned</option>
                     <option value="Watching">Watching</option>
                     <option value="Finished">Finished</option>
                     <option value="Remove">Remove</option>
@@ -94,4 +124,16 @@
       </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    var exampleModal = document.getElementById('staticBackdrop')
+    exampleModal.addEventListener('show.bs.modal', function (event) {
+        var button = event.relatedTarget
+        var recipient = button.getAttribute('data-bs-whatever')
+        var modalBodyInput = exampleModal.querySelector('.modal-body input')
+        modalBodyInput.value = recipient
+    })
+</script>
 @endsection
