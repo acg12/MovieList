@@ -45,16 +45,15 @@
 <div class="container-fluid px-5">
     <div class="d-flex flex-wrap row flex-md-row justify-content-md-start">
         @foreach ($popular as $p)
-        <div class="card mx-3" style="width: 12rem;">
-            <img src="{{ Storage::url($p->img_url) }}" class="card-img-top" alt="...">
-            <div class="card-body">
+            <div class="card mx-3" style="width: 12rem;">
                 <a href="/movies/view/{{ $p->id }}" class="movie-link">
-                    <h5 class="card-title fs-6">{{ $p->title }}</h5>
+                    <img src="{{ Storage::url($p->img_url) }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                            <h5 class="card-title fs-6">{{ $p->title }}</h5>
+                        <p class="card-text fs-6">{{ $p->getReleaseYear() }}</p>
+                    </div>
                 </a>
-                <p class="card-text fs-6">{{ $p->getReleaseYear() }}</p>
             </div>
-
-        </div>
         @endforeach
     </div>
 </div>
@@ -124,32 +123,30 @@
 <div class="container-fluid px-5 py-3">
     <div class="container-fluid text-end pb-5">
         @auth
-        @if(Auth::user()->role =='admin')
-        <button class="btn btn-danger"><a href="/movies/add">Add Movie</a></button>
-        @endif
+            @if(Auth::user()->role =='admin')
+                <button class="btn btn-danger"><a href="/movies/add">Add Movie</a></button>
+            @endif
         @endauth
     </div>
     <div class="d-flex flex-wrap row flex-md-row justify-content-md-start">
         @foreach ($movies as $m)
         <div class="card mx-3" style="width: 12rem;">
-            <img src="{{ Storage::url($m->img_url) }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <a href="/movies/view/{{ $m->id }}" class="movie-link">
+            <a href="/movies/view/{{ $m->id }}" class="movie-link">
+                <img src="{{ Storage::url($m->img_url) }}" class="card-img-top" alt="...">
+                <div class="card-body">
                     <h5 class="card-title fs-6">{{ $m->title }}</h5>
-                </a>
-                <div class="d-flex flex-row flex-wrap justify-content-between">
-                    <p class="card-text fs-6">{{ $m->getReleaseYear() }}</p>
-                    @auth
-                    @if(Auth::user()->role == "member" && !Auth::user()->inUserWatchlist($m->id))
-                    <!-- <button name="addMovie" value="{{ $m->id }}" class="btn btn-primary" type="submit" aria-label="add"><i class="bi bi-plus-lg"></i></button> -->
-                    <a style="color: white" href="watchlist/add/{{ $m->id }}"><i class="bi bi-plus-lg"></i></a>
-                    @elseif(Auth::user()->role == "member" && Auth::user()->inUserWatchlist($m->id))
-                    <!-- <button name="removeMovie" value="{{ $m->id }}" class="btn btn-danger" type="submit" aria-label="add"><i class="bi bi-check-lg"></i></button> -->
-                    <a style="color: red;" href="watchlist/remove/{{ $m->id }}"><i class="bi bi-check-lg"></i></a>
-                    @endif
-                    @endauth
+                    <div class="d-flex flex-row flex-wrap justify-content-between">
+                        <p class="card-text fs-6">{{ $m->getReleaseYear() }}</p>
+                        @auth
+                            @if(Auth::user()->role == "member" && !Auth::user()->inUserWatchlist($m->id))
+                                <a style="color: white" href="watchlist/add/{{ $m->id }}"><i class="bi bi-plus-lg"></i></a>
+                            @elseif(Auth::user()->role == "member" && Auth::user()->inUserWatchlist($m->id))
+                                <a style="color: red;" href="watchlist/remove/{{ $m->id }}"><i class="bi bi-check-lg"></i></a>
+                            @endif
+                        @endauth
+                    </div>
                 </div>
-            </div>
+            </a>
         </div>
         @endforeach
     </div>

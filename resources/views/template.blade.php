@@ -26,7 +26,7 @@
             @endif
             <div class="btn-group">
                 <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    Profile
+                    <i class="fa fa-user-circle-o"></i>
                 </button>
                 <ul class="dropdown-menu dropdown-menu-end">
                     <li><a href="/profile/edit"><button class="dropdown-item">Profile</button></a></li>

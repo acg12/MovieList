@@ -15,10 +15,8 @@
                 <p class="fs-3 fw-light">Profile</p>
             </div>
     @if (Auth::check() && Auth::user()->role == 'admin')
-            <div class="p-2 bd-highlight">
-                <a href="/actors/edit/{{$actor->id}}"><button type="button" class="btn btn-danger btn_img"><i class="fa fa-edit"></i></button></a>
-                <a href="/actors/remove/{{$actor->id}}"><button type="button" class="btn btn-danger btn_img"><i class="fa fa-trash-o"></i></button></a>
-            </div>
+            <a href="/actors/edit/{{$actor->id}}"><button type="button" class="btn btn-danger btn_img"><i class="fa fa-edit"></i></button></a>
+            <a href="/actors/remove/{{$actor->id}}"><button type="button" class="btn btn-danger btn_img"><i class="fa fa-trash-o"></i></button></a>
         </div>
         <img src="{{Storage::url('public/'.$actor->img_url)}}" class="card-img-top img_dark" alt="...">
     @else
@@ -60,7 +58,7 @@
                 <div class="card h-100">
                   <img src="{{Storage::url('public/'.$m->img_url)}}" class="card-img-top" alt="...">
                   <div class="card-body">
-                      <h5 class="card-title">{{$m->title}}</h5>
+                    <h5 class="card-title fs-6">{{ $m->title }}</h5>
                   </div>
                 </div>
               </a>

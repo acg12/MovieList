@@ -61,6 +61,10 @@
   height: 20vw;
 }
 
+.card a {
+    padding-top: 10px;
+}
+
 .row a {
   color: white;
   text-decoration: none;

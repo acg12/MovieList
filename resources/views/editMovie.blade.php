@@ -66,7 +66,7 @@
         <input class="form-control" type="file" name="backgroundUrl">
     </div>
     <div class="d-grid gap-2">
-        <button class="btn btn-danger" type="submit">Create</button>
+        <button class="btn btn-danger" type="submit">Save Changes</button>
     </div>
 </form>
 @endsection
