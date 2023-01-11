@@ -41,8 +41,8 @@ Route::group(['middleware' => 'loggedinsecurity'], function () {
 
 Route::group(['middleware' => 'membersecurity'], function () {
     Route::get('/watchlists', [UserController::class, 'watchlists']);
-    Route::get('/watchlist/add/{id}', [UserController::class, 'addMovieToWatchlist']);
-    Route::get('/watchlist/remove/{id}', [UserController::class, 'removeMovieFromWatchlist']);
+    Route::get('/watchlists/add/{id}', [UserController::class, 'addMovieToWatchlist']);
+    Route::get('/watchlists/remove/{id}', [UserController::class, 'removeMovieFromWatchlist']);
 
     Route::post('/watchlists/changeStatus', [UserController::class, 'changeStatus']);
 });

@@ -139,9 +139,9 @@
                         <p class="card-text fs-6">{{ $m->getReleaseYear() }}</p>
                         @auth
                             @if(Auth::user()->role == "member" && !Auth::user()->inUserWatchlist($m->id))
-                                <a style="color: white" href="watchlist/add/{{ $m->id }}"><i class="bi bi-plus-lg"></i></a>
+                                <a style="color: white" href="watchlists/add/{{ $m->id }}"><i class="bi bi-plus-lg"></i></a>
                             @elseif(Auth::user()->role == "member" && Auth::user()->inUserWatchlist($m->id))
-                                <a style="color: red;" href="watchlist/remove/{{ $m->id }}"><i class="bi bi-check-lg"></i></a>
+                                <a style="color: red;" href="watchlists/remove/{{ $m->id }}"><i class="bi bi-check-lg"></i></a>
                             @endif
                         @endauth
                     </div>

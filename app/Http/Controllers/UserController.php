@@ -151,7 +151,6 @@ class UserController extends Controller
         $user = Auth::user();
         $user_id = $user->id;
         if ($req->status == 'Remove') {
-            $movie = DB::table('watchlists')->where('user_id', $user_id)->where('movie_id', $req->movie_id)->first();
             self::removeMovieFromWatchlist($req->movie_id);
         } else {
             DB::table('watchlists')->where('user_id', $user_id)->where('movie_id', $req->movie_id)->update([

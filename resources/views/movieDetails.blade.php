@@ -37,9 +37,9 @@
             @auth
             <div>
                 @if(Auth::user()->role == "member" && !Auth::user()->inUserWatchlist($movie->id))
-                Add to watchlist <a style="color: white" href="/watchlist/add/{{ $movie->id }}"><i class="bi bi-plus-lg"></i></a>
+                Add to watchlist <a style="color: white" href="/watchlists/add/{{ $movie->id }}"><i class="bi bi-plus-lg"></i></a>
                 @elseif(Auth::user()->role == "member" && Auth::user()->inUserWatchlist($movie->id))
-                Added to watchlist <a style="color: red;" href="/watchlist/remove/{{ $movie->id }}"><i class="bi bi-check-lg"></i></a>
+                Added to watchlist <a style="color: red;" href="/watchlists/remove/{{ $movie->id }}"><i class="bi bi-check-lg"></i></a>
                 @elseif(Auth::user()->role == "admin")
                 <a href="/movies/edit/{{ $movie->id }}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" class="bi bi-pencil-square" viewBox="0 0 16 16">
