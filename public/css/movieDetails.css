@@ -51,7 +51,11 @@ body {
     background-color: rgb(26, 26, 26);
 }
 
-.col a {
+.card-img-top {
+    width: 100%;
+}
+
+a {
     color: white;
     text-decoration: none;
 }

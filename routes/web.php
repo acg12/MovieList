@@ -26,6 +26,7 @@ Route::get('/actors/view/{id}', [ActorController::class, 'actorDetails']);
 Route::group(['middleware' => 'guestsecurity'], function () {
     Route::get('/loginPage', [UserController::class, 'viewLogin']);
     Route::get('/registerPage', [UserController::class, 'viewRegister']);
+
     Route::post('/loginPage', [UserController::class, 'login']);;
     Route::post('/registerPage', [UserController::class, 'register']);
 });
@@ -33,25 +34,25 @@ Route::group(['middleware' => 'guestsecurity'], function () {
 Route::group(['middleware' => 'loggedinsecurity'], function () {
     Route::get('/logout', [UserController::class, 'logout']);
     Route::get('/profile/edit', [UserController::class, 'edit']);
+
     Route::post('/profile/editData', [UserController::class, 'editData']);
     Route::post('/profile/editImage', [UserController::class, 'editImage']);
-    Route::get('/watchlists', [UserController::class, 'watchlists']);
-    Route::post('/watchlists/changeStatus', [UserController::class, 'changeStatus']);
 });
 
 Route::group(['middleware' => 'membersecurity'], function () {
-    // Route::get('/logout', [UserController::class, 'logout']);
+    Route::get('/watchlists', [UserController::class, 'watchlists']);
     Route::get('/watchlist/add/{id}', [UserController::class, 'addMovieToWatchlist']);
     Route::get('/watchlist/remove/{id}', [UserController::class, 'removeMovieFromWatchlist']);
+
+    Route::post('/watchlists/changeStatus', [UserController::class, 'changeStatus']);
 });
 
 Route::group(['middleware' => 'adminsecurity'], function () {
-    // Route::get('/logout', [UserController::class, 'logout']);
     Route::get('/movies/add', [MovieController::class, 'createMovie']);
     Route::get('/actors/add', [ActorController::class, 'createActor']);
     Route::get('/movies/edit/{id}', [MovieController::class, 'editMovie']);
     Route::get('/actors/edit/{id}', [ActorController::class, 'editActor']);
-
+    Route::get('/movies/remove/{id}', [MovieController::class, 'removeMovie']);
     Route::get('/actors/remove/{id}', [ActorController::class, 'removeActor']);
 
     Route::post('/movies/add', [MovieController::class, 'insertMovie']);

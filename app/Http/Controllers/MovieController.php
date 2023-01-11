@@ -145,6 +145,14 @@ class MovieController extends Controller
         }
     }
 
+    public function removeMovie($id) {
+        $movie = Movie::find($id);
+        Storage::delete('public/' . $movie->img_url);
+        $movie->delete();
+
+        return redirect('/movies');
+    }
+
     public function viewMovies (Request $req) {
         $movies = Movie::where("title", "LIKE", "%$req->search%")->simplePaginate(15);
         return view('viewMovies', ['movies' => $movies]);
@@ -153,7 +161,7 @@ class MovieController extends Controller
     public function movieDetails($id) {
         $movie = Movie::find($id);
         $more = $this->findSimilarMovie($movie);
-        return view('movieDetails', ['movie' => $movie]);
+        return view('movieDetails', ['movie' => $movie, 'more' => $more]);
     }
 
     public static function getRandomMovies($n) {
@@ -192,10 +200,17 @@ class MovieController extends Controller
     }
 
     public function findSimilarMovie($movie) {
-        $more = Movie::whereHas('genres', function($query) use ($genreId) {
+        $genres_id = [];
+        foreach($movie->genres as $g) {
+            array_push($genres_id, $g->id);
+        }
 
-        });
-        return [];
+        $id = $movie->id;
+        $more = Movie::whereHas('genres', function($query) use ($genres_id, $id) {
+            $query->whereIn('genre_id', $genres_id)->where('movie_id', '!=', $id);
+        })->get();
+
+        return $more;
     }
 
     // public function viewActorMovie($id) {
