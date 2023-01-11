@@ -20,9 +20,7 @@
     <img src="{{ Storage::url($movie->img_url) }}" alt="" class="background-img">
     <div class="gradient-block"></div>
     <div class="details d-flex flex-row justify-content-around align-items-center flex-wrap">
-        <div class="card" style="width: 18rem;">
-            <img class="card-img" src="{{ Storage::url($movie->img_url) }}" alt="">
-        </div>
+        <img class="card-img" src="{{ Storage::url($movie->img_url) }}" alt="">
         <div class="col-6 text-start">
             <p class="h1">{{ $movie->title }}</p>
             <div class="flex-row my-4">
@@ -65,6 +63,32 @@
     <div class="text-start h4 section-title py-2 my-3">
         More
     </div>
+    <div class="container-fluid px-5 py-3">
+    <div class="d-flex flex-wrap row flex-md-row justify-content-md-start">
+        @foreach ($more as $m)
+        <div class="card mx-3" style="width: 12rem;">
+            <img src="{{ Storage::url($m->img_url) }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <a href="/movies/view/{{ $m->id }}" class="movie-link">
+                    <h5 class="card-title fs-6">{{ $m->title }}</h5>
+                </a>
+                <div class="d-flex flex-row flex-wrap justify-content-between">
+                    <p class="card-text fs-6">{{ $m->getReleaseYear() }}</p>
+                    @auth
+                    @if(Auth::user()->role == "member" && !Auth::user()->inUserWatchlist($m->id))
+                    <!-- <button name="addMovie" value="{{ $m->id }}" class="btn btn-primary" type="submit" aria-label="add"><i class="bi bi-plus-lg"></i></button> -->
+                    <a style="color: white" href="watchlist/add/{{ $m->id }}"><i class="bi bi-plus-lg"></i></a>
+                    @elseif(Auth::user()->role == "member" && Auth::user()->inUserWatchlist($m->id))
+                    <!-- <button name="removeMovie" value="{{ $m->id }}" class="btn btn-danger" type="submit" aria-label="add"><i class="bi bi-check-lg"></i></button> -->
+                    <a style="color: red;" href="watchlist/remove/{{ $m->id }}"><i class="bi bi-check-lg"></i></a>
+                    @endif
+                    @endauth
+                </div>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
 </div>
 @endif
 @endsection

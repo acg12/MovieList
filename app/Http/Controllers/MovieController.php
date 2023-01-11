@@ -152,6 +152,7 @@ class MovieController extends Controller
 
     public function movieDetails($id) {
         $movie = Movie::find($id);
+        $more = $this->findSimilarMovie($movie);
         return view('movieDetails', ['movie' => $movie]);
     }
 
@@ -188,6 +189,13 @@ class MovieController extends Controller
         } else if ($sort == 'descending') {
             return Movie::orderBy('title')->get()->sortByDesc('title', SORT_NATURAL | SORT_FLAG_CASE);
         }
+    }
+
+    public function findSimilarMovie($movie) {
+        $more = Movie::whereHas('genres', function($query) use ($genreId) {
+
+        });
+        return [];
     }
 
     // public function viewActorMovie($id) {

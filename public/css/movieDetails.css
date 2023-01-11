@@ -21,6 +21,11 @@ body {
     object-fit: cover;
 }
 
+.card-img {
+    width: 25vw;
+    border-radius: 1vw;
+}
+
 .banner {
     position: relative;
     width: 100vw;
@@ -54,6 +59,7 @@ body {
 .actor-img {
     padding: 10px;
     height: 20vw;
+    object-fit: cover;
 }
 
 .genre {

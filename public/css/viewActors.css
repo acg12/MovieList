@@ -24,6 +24,7 @@
 .card img {
   padding: 10px;
   height: 20vw;
+  object-fit: cover;
 }
 
 .pagination {
